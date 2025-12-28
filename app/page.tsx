@@ -1,6 +1,9 @@
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
-import Image from "next/image";
+import { SignUpButton } from "@clerk/nextjs";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Link2, BarChart3, Shield, Zap, MousePointerClick, QrCode } from "lucide-react";
 
 export default async function Home() {
   const { userId } = await auth();
@@ -10,64 +13,125 @@ export default async function Home() {
   }
   
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background font-sans">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-background sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-foreground">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-muted-foreground">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-foreground hover:underline"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-foreground hover:underline"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <div className="min-h-screen bg-background">
+      {/* Hero Section */}
+      <section className="container mx-auto px-4 py-16 md:py-24">
+        <div className="flex flex-col items-center text-center space-y-8">
+          <div className="space-y-4 max-w-3xl">
+            <h1 className="text-4xl md:text-6xl font-bold tracking-tight text-foreground">
+              Shorten Your Links,
+              <span className="text-primary"> Amplify Your Reach</span>
+            </h1>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto">
+              Transform long, unwieldy URLs into short, shareable links. Track clicks, analyze performance, and take control of your links with powerful analytics.
+            </p>
+          </div>
+          
+          <div className="flex flex-col sm:flex-row gap-4">
+            <SignUpButton mode="modal">
+              <Button size="lg" className="text-base">
+                Get Started Free
+              </Button>
+            </SignUpButton>
+            <Button size="lg" variant="outline" className="text-base" asChild>
+              <a href="#features">Learn More</a>
+            </Button>
+          </div>
+        </div>
+      </section>
+
+      {/* Features Section */}
+      <section id="features" className="container mx-auto px-4 py-16 md:py-24">
+        <div className="text-center space-y-4 mb-12">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+            Powerful Features for Modern Link Management
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            Everything you need to create, manage, and track your shortened links
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-5 text-primary-foreground transition-colors hover:bg-primary/90 md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-border px-5 transition-colors hover:bg-accent hover:text-accent-foreground md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Card>
+            <CardHeader>
+              <Link2 className="h-10 w-10 text-primary mb-2" />
+              <CardTitle>Custom Short Links</CardTitle>
+              <CardDescription>
+                Create memorable, branded short links with custom aliases that reflect your brand
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <BarChart3 className="h-10 w-10 text-primary mb-2" />
+              <CardTitle>Advanced Analytics</CardTitle>
+              <CardDescription>
+                Track clicks, analyze traffic sources, and gain insights into your link performance
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <Shield className="h-10 w-10 text-primary mb-2" />
+              <CardTitle>Secure & Reliable</CardTitle>
+              <CardDescription>
+                Enterprise-grade security with authentication and protected links for peace of mind
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <Zap className="h-10 w-10 text-primary mb-2" />
+              <CardTitle>Lightning Fast</CardTitle>
+              <CardDescription>
+                Instant link creation and blazing-fast redirects ensure optimal user experience
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <MousePointerClick className="h-10 w-10 text-primary mb-2" />
+              <CardTitle>Click Tracking</CardTitle>
+              <CardDescription>
+                Monitor every click with detailed timestamps and engagement metrics
+              </CardDescription>
+            </CardHeader>
+          </Card>
+
+          <Card>
+            <CardHeader>
+              <QrCode className="h-10 w-10 text-primary mb-2" />
+              <CardTitle>Easy Sharing</CardTitle>
+              <CardDescription>
+                Share your links anywhere with copy-to-clipboard functionality and QR codes
+              </CardDescription>
+            </CardHeader>
+          </Card>
         </div>
-      </main>
+      </section>
+
+      {/* CTA Section */}
+      <section className="container mx-auto px-4 py-16 md:py-24">
+        <Card className="border-primary/50 bg-gradient-to-br from-primary/10 to-primary/5">
+          <CardContent className="flex flex-col items-center text-center space-y-6 py-12">
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+              Ready to Shorten Your Links?
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl">
+              Join thousands of users who trust our platform for their link management needs. Start creating short links in seconds.
+            </p>
+            <SignUpButton mode="modal">
+              <Button size="lg" className="text-base">
+                Create Your Account
+              </Button>
+            </SignUpButton>
+          </CardContent>
+        </Card>
+      </section>
     </div>
   );
 }
